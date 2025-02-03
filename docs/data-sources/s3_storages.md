@@ -1,26 +1,26 @@
 ---
-page_title: "rustack_s3_storages Data Source - terraform-provider-rustack"
+page_title: "basis_s3_storages Data Source - terraform-provider-bcc"
 ---
-# rustack_s3_storages (Data Source)
+# basis_s3_storages (Data Source)
 
-Returns a list of Rustack S3Storage.
+Returns a list of Basis S3Storage.
 
 Get information about S3Storage in the project for use in other resources.
 
-Note: You can use the [`rustack_s3_storage`](S3Storage) data source to obtain metadata
+Note: You can use the [`basis_s3_storage`](S3Storage) data source to obtain metadata
 about a single s3 storage if you already know the `name` and `project_id` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
 
-data "rustack_s3_storages" "s3_storages" {
-    project_id = resource.rustack_project.single_project.id
+data "basis_s3_storages" "s3_storages" {
+    project_id = resource.basis_project.single_project.id
 }
 
 ```

@@ -1,28 +1,28 @@
 ---
-page_title: "rustack_networks Data Source - terraform-provider-rustack"
+page_title: "basis_networks Data Source - terraform-provider-bcc"
 ---
-# rustack_networks (Data Source)
+# basis_networks (Data Source)
 
 Get information about Networks in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_network`](Network) data source to obtain metadata
+Note: You can use the [`basis_network`](Network) data source to obtain metadata
 about a single Network if you already know the `name` and `vdc_id` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id"
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id"
     name = "Terraform VDC"
 }
 
-data "rustack_networks" "all_networks" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_networks" "all_networks" {
+    vdc_id = data.basis_vdc.single_vdc.id
 }
 
 ```

@@ -1,14 +1,14 @@
-module github.com/rustack-cloud-platform/terraform-provider-rcp
+module github.com/basis-cloud/terraform-provider-bcc
 
 go 1.21
 
 toolchain go1.21.1
 
 require (
+	github.com/basis-cloud/bcc-go v0.3.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.30.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/pkg/errors v0.9.1
-	github.com/rustack-cloud-platform/rcp-go v0.2.12
 	github.com/sirupsen/logrus v1.9.3
 )
 

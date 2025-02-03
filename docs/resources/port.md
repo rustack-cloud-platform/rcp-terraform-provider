@@ -1,31 +1,31 @@
 ---
-page_title: "rustack_port Resource - terraform-provider-rustack"
+page_title: "basis_port Resource - terraform-provider-bcc"
 ---
-# rustack_port (Resource)
+# basis_port (Resource)
 
-Provides a Rustack port which can be attached to a VM and Router in order to provide connection with network.
+Provides a Basis port which can be attached to a VM and Router in order to provide connection with network.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_firewall_template" "allow_default" {
-    vdc_id = resource.rustack_vdc.vdc1.id
+data "basis_firewall_template" "allow_default" {
+    vdc_id = resource.basis_vdc.vdc1.id
     name = "Разрешить входящие"
 }
 
 
-resource "rustack_network" "network" {
-    vdc_id = resource.rustack_vdc.single_vdc.id
+resource "basis_network" "network" {
+    vdc_id = resource.basis_vdc.single_vdc.id
     name = "network"
 
     subnets {
@@ -38,12 +38,12 @@ resource "rustack_network" "network" {
     }
 }
 
-resource "rustack_port" "router_port" {
-    vdc_id = resource.rustack_vdc.single_vdc.id
+resource "basis_port" "router_port" {
+    vdc_id = resource.basis_vdc.single_vdc.id
 
-    network_id = resource.rustack_network.network.id
+    network_id = resource.basis_network.network.id
     ip_address = "199.199.199.199"
-    firewall_templates = [data.rustack_firewall_template.allow_default.id]
+    firewall_templates = [data.basis_firewall_template.allow_default.id]
     tags = ["created_by:terraform"]
 }
 ```

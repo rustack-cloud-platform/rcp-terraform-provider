@@ -1,87 +1,87 @@
 ---
-page_title: "rustack_vm Resource - terraform-provider-rustack"
+page_title: "basis_vm Resource - terraform-provider-bcc"
 ---
-# rustack_vm (Resource)
+# basis_vm (Resource)
 
 This data source provides creating and deleting vms. You should have a vdc to create a vm.
 
 ## Example Usage
 
 ```hcl 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "service_network" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_network" "service_network" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Сеть"
 }
 
-data "rustack_storage_profile" "ssd" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_storage_profile" "ssd" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "ssd"
 }
 
-data "rustack_storage_profile" "sas" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_storage_profile" "sas" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "sas"
 }
 
-data "rustack_template" "debian10" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_template" "debian10" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Debian 10"
 }
 
-data "rustack_firewall_template" "allow_default" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "allow_default" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "По-умолчанию"
 }
 
-data "rustack_firewall_template" "allow_web" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "allow_web" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Разрешить WEB"
 }
 
-data "rustack_firewall_template" "allow_ssh" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "allow_ssh" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Разрешить SSH"
 }
 
-data "rustack_port" "vm_port" {
-    vdc_id = resource.rustack_vdc.single_vdc.id
+data "basis_port" "vm_port" {
+    vdc_id = resource.basis_vdc.single_vdc.id
 
-    network_id = resource.rustack_network.network.id
-    firewall_templates = [data.rustack_firewall_template.allow_default.id]
+    network_id = resource.basis_network.network.id
+    firewall_templates = [data.basis_firewall_template.allow_default.id]
 }
 
-resource "rustack_vm" "vm1" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+resource "basis_vm" "vm1" {
+    vdc_id = data.basis_vdc.single_vdc.id
 
     name = "Server 1"
     cpu = 2
     ram = 4
 
-    template_id = data.rustack_template.debian10.id
+    template_id = data.basis_template.debian10.id
 
     user_data = file("user_data.yaml")
 
     system_disk {
         size = 10
-        storage_profile_id = data.rustack_storage_profile.ssd.id
+        storage_profile_id = data.basis_storage_profile.ssd.id
     }
     
     disks = [
-        data.rustack_disk.new_disk1.id,
-        data.rustack_disk.new_disk2.id,
+        data.basis_disk.new_disk1.id,
+        data.basis_disk.new_disk2.id,
     ]
 
     ports {
-        data.rustack_port.vm_port
+        data.basis_port.vm_port
     }
 
     floating = false

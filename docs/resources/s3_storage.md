@@ -1,18 +1,18 @@
 ---
-page_title: "rustack_s3_storage Resource - terraform-provider-rustack"
+page_title: "basis_s3_storage Resource - terraform-provider-bcc"
 ---
-# rustack_s3_storage (Resource)
+# basis_s3_storage (Resource)
 
 This data source provides creating and deleting s3 storage. You should have a project to create a s3_storage.
 
 ## Example Usage
 
 ```hcl 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
-resource "rustack_s3_storage" "s3_storage" {
-    project_id = resource.rustack_project.single_project.id
+resource "basis_s3_storage" "s3_storage" {
+    project_id = resource.basis_project.single_project.id
     name = "s3_storage"
     backend = "minio" # or "netapp"
     tags = ["created_by:terraform"]

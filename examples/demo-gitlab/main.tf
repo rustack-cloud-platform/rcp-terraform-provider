@@ -2,61 +2,61 @@ terraform {
     required_version = ">= 1.0.0"
 
     required_providers {
-        rustack = {
-            source  = "rustack-cloud-platform/rcp"
+        basis = {
+            source  = "basis-cloud/bcc"
             version = "~> 0.1"
         }
     }
 }
 
-provider "rustack" {
-    api_endpoint = var.rustack_endpoint
-    token = var.rustack_token
+provider "basis" {
+    api_endpoint = var.basis_endpoint
+    token = var.basis_token
 }
 
-resource "rustack_project" "project" {
+resource "basis_project" "project" {
     name = "Terraform GitLab Demo"
 }
 
-data "rustack_hypervisor" "vmware" {
-    project_id = rustack_project.project.id
+data "basis_hypervisor" "vmware" {
+    project_id = basis_project.project.id
     name = "vmware"
 }
 
-resource "rustack_vdc" "vdc" {
+resource "basis_vdc" "vdc" {
     name = "Gitlab"
-    project_id = rustack_project.project.id
-    hypervisor_id = data.rustack_hypervisor.vmware.id
+    project_id = basis_project.project.id
+    hypervisor_id = data.basis_hypervisor.vmware.id
 }
 
 
-data "rustack_firewall_template" "allow_default" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_firewall_template" "allow_default" {
+    vdc_id = basis_vdc.vdc.id
     name = "По-умолчанию"
 }
 
-data "rustack_firewall_template" "allow_web" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_firewall_template" "allow_web" {
+    vdc_id = basis_vdc.vdc.id
     name = "Разрешить WEB"
 }
 
-data "rustack_firewall_template" "allow_ssh" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_firewall_template" "allow_ssh" {
+    vdc_id = basis_vdc.vdc.id
     name = "Разрешить SSH"
 }
 
-data "rustack_storage_profile" "ssd" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_storage_profile" "ssd" {
+    vdc_id = basis_vdc.vdc.id
     name = "ssd"
 }
 
-data "rustack_network" "service_network" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_network" "service_network" {
+    vdc_id = basis_vdc.vdc.id
     name = "Сеть"
 }
 
-data "rustack_template" "ubuntu20" {
-    vdc_id = rustack_vdc.vdc.id
+data "basis_template" "ubuntu20" {
+    vdc_id = basis_vdc.vdc.id
     name = "Ubuntu 20.04"
 }
 
@@ -76,29 +76,29 @@ data "template_file" "cloud_init" {
     }
 }
 
-resource "rustack_vm" "gitlab" {
-    vdc_id = rustack_vdc.vdc.id
+resource "basis_vm" "gitlab" {
+    vdc_id = basis_vdc.vdc.id
 
     name = "GitLab"
     cpu = 8
     ram = 16
 
-    template_id = data.rustack_template.ubuntu20.id
+    template_id = data.basis_template.ubuntu20.id
 
     user_data = data.template_file.cloud_init.rendered
 
     disk {
         name = "Root"
         size = 50
-        storage_profile_id = data.rustack_storage_profile.ssd.id
+        storage_profile_id = data.basis_storage_profile.ssd.id
     }
 
     port {
-        network_id = data.rustack_network.service_network.id
+        network_id = data.basis_network.service_network.id
         firewall_templates = [
-            data.rustack_firewall_template.allow_default.id,
-            data.rustack_firewall_template.allow_web.id,
-            data.rustack_firewall_template.allow_ssh.id
+            data.basis_firewall_template.allow_default.id,
+            data.basis_firewall_template.allow_web.id,
+            data.basis_firewall_template.allow_ssh.id
         ]
     }
 
@@ -106,7 +106,7 @@ resource "rustack_vm" "gitlab" {
 }
 
 output "gitlab_ip" {
-  value = rustack_vm.gitlab.floating_ip
+  value = basis_vm.gitlab.floating_ip
 }
 
 output "gitlab_user" {

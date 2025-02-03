@@ -2,27 +2,27 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    rustack = {
-      source  = "rustack-cloud-platform/rcp"
+    basis = {
+      source  = "basis-cloud/bcc"
     }
   }
 }
 
-provider "rustack" {
+provider "basis" {
     token = "[PLACE_YOUR_TOKEN_HERE]"
 }
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-resource "rustack_network" "network2" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+resource "basis_network" "network2" {
+    vdc_id = data.basis_vdc.single_vdc.id
 
     name = "Сеть 1"
 

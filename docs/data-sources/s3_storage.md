@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_s3_storage Data Source - terraform-provider-rustack"
+page_title: "basis_s3_storage Data Source - terraform-provider-bcc"
 ---
-# rustack_s3_storage (Data Source)
+# basis_s3_storage (Data Source)
 
 Get information about a S3Storage for use in other resources. 
 
@@ -9,12 +9,12 @@ Get information about a S3Storage for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_s3_storage" "s3_storage" {
-    project_id = resource.rustack_project.single_project.id
+data "basis_s3_storage" "s3_storage" {
+    project_id = resource.basis_project.single_project.id
     
     name = "s3_storage"
     # or

@@ -1,30 +1,30 @@
 ---
-page_title: "rustack_lbaass Data Source - terraform-provider-rustack"
+page_title: "basis_lbaass Data Source - terraform-provider-bcc"
 ---
-# rustack_lbaass (Data Source)
+# basis_lbaass (Data Source)
 
-Returns a list of Rustack lbaass.
+Returns a list of Basis lbaass.
 
 Get information about Lbaass in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_lbaas`](Lbaas) data source to obtain metadata
+Note: You can use the [`basis_lbaas`](Lbaas) data source to obtain metadata
 about a single lbaas if you already know the `name` and `vdc_id` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_lbaass" "all_lbaass" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_lbaass" "all_lbaass" {
+    vdc_id = data.basis_vdc.single_vdc.id
 }
 
 ```

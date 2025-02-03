@@ -1,11 +1,11 @@
 ---
-page_title: "rustack_templates Data Source - terraform-provider-rustack"
+page_title: "basis_templates Data Source - terraform-provider-bcc"
 ---
-# rustack_templates (Data Source)
+# basis_templates (Data Source)
 
 Get information about Templates in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_template`](template) data source to obtain metadata
+Note: You can use the [`basis_template`](template) data source to obtain metadata
 about a single Template if you already know the `name` and `vdc_id` to retrieve.
 
 
@@ -13,17 +13,17 @@ about a single Template if you already know the `name` and `vdc_id` to retrieve.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_templates" "single_template" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_templates" "single_template" {
+    vdc_id = data.basis_vdc.single_vdc.id
 }
 
 ```

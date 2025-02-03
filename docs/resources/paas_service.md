@@ -1,20 +1,20 @@
 ---
-page_title: "rustack_paas_service Resource - terraform-provider-rustack"
+page_title: "basis_paas_service Resource - terraform-provider-bcc"
 ---
-# rustack_paas_service (Resource)
+# basis_paas_service (Resource)
 
-Provides a Rustack PaaS Service resource.
+Provides a Basis PaaS Service resource.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-resource "rustack_paas_service" "service" {
+resource "basis_paas_service" "service" {
   name = "terraform paas service"
-  project_id = data.rustack_project.single_project.id
+  project_id = data.basis_project.single_project.id
   paas_service_id = 1
   paas_service_inputs = jsonencode({
     "change_password": false,

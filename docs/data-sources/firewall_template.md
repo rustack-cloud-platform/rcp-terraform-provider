@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_firewall_template Data Source - terraform-provider-rustack"
+page_title: "basis_firewall_template Data Source - terraform-provider-bcc"
 ---
-# rustack_firewall_template (Data Source)
+# basis_firewall_template (Data Source)
 
 Get information about a Firewall Template for use in other resources. 
 
@@ -9,17 +9,17 @@ Get information about a Firewall Template for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_firewall_template" "single_template" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "single_template" {
+    vdc_id = data.basis_vdc.single_vdc.id
     
     name = "Разрешить Web"
     # or

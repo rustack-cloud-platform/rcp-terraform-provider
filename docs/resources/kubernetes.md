@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_kubernetes Resource - terraform-provider-rustack"
+page_title: "basis_kubernetes Resource - terraform-provider-bcc"
 ---
-# rustack_kubernetes (Resource)
+# basis_kubernetes (Resource)
 
 This data source provides creating and deleting kubernetes. You should have a vdc to create a kubernetes.
 #
@@ -11,61 +11,61 @@ This data source provides creating and deleting kubernetes. You should have a vd
 ## Example Usage
 
 ```hcl 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "service_network" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_network" "service_network" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Сеть"
 }
 
-data "rustack_storage_profile" "ssd" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_storage_profile" "ssd" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "ssd"
 }
 
-data "rustack_account" "me"{}
+data "basis_account" "me"{}
 
-data "rustack_kubernetes_template" "kubernetes_template"{
+data "basis_kubernetes_template" "kubernetes_template"{
     name = "Kubernetes 1.22.1"
-    vdc_id = data.rustack_vdc.single_vdc.id
+    vdc_id = data.basis_vdc.single_vdc.id
     
 }
 
-data "rustack_pub_key" "key"{
+data "basis_pub_key" "key"{
     name = "test"
-    account_id = data.rustack_account.me.id
+    account_id = data.basis_account.me.id
 }
 
-data "rustack_platform" "pl"{
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_platform" "pl"{
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Intel Cascade Lake"
     
 }
 
-resource "rustack_kubernetes" "k8s" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+resource "basis_kubernetes" "k8s" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "test"
     node_ram = 3
     node_cpu = 3
-    platform = data.rustack_platform.pl.id
-    template_id = data.rustack_kubernetes_template.kubernetes_template.id
+    platform = data.basis_platform.pl.id
+    template_id = data.basis_kubernetes_template.kubernetes_template.id
     nodes_count = 2
     node_disk_size = 10
-    node_storage_profile_id = data.rustack_storage_profile.ssd.id
-    user_public_key_id = data.rustack_pub_key.key.id
+    node_storage_profile_id = data.basis_storage_profile.ssd.id
+    user_public_key_id = data.basis_pub_key.key.id
     floating = true
     tags = ["created_by:terraform"]
 }
 
 output "dashboard_url" {
-        value = resource.rustack_kubernetes.k8s.dashboard_url
+        value = resource.basis_kubernetes.k8s.dashboard_url
 }
 
 ```
@@ -104,7 +104,7 @@ output "dashboard_url" {
 - *This block will print dashboard_url in console*
 ```
     output "dashboard_url" {
-        value = resource.rustack_kubernetes.k8s.dashboard_url
+        value = resource.basis_kubernetes.k8s.dashboard_url
     }
 ```
 ### Get kubectl config

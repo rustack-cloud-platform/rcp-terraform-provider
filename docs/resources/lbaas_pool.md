@@ -1,56 +1,56 @@
 ---
-page_title: "rustack_lbaas_pool Resource - terraform-provider-rustack"
+page_title: "basis_lbaas_pool Resource - terraform-provider-bcc"
 ---
-# rustack_lbaas_pool (Resource)
+# basis_lbaas_pool (Resource)
 
-Provides a Rustack Lbaas pool resource.
+Provides a Basis Lbaas pool resource.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "new_network" {
-    vdc_id =  data.rustack_vdc.single_vdc.id
+data "basis_network" "new_network" {
+    vdc_id =  data.basis_vdc.single_vdc.id
     name = "New network"
 }
 
-data "rustack_template" "debian10" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_template" "debian10" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Debian 10"
 }
 
-data "rustack_firewall_template" "allow_default" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "allow_default" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "По-умолчанию"
 }
 
-data "rustack_lbaas" "lbaas" {
-    vdc_id = data.rustack_project.single_vdc.id
+data "basis_lbaas" "lbaas" {
+    vdc_id = data.basis_project.single_vdc.id
     name = "lbaas"
 }
 
-data "rustack_port" "vm_port" {
-    vdc_id = resource.rustack_vdc.single_vdc.id
+data "basis_port" "vm_port" {
+    vdc_id = resource.basis_vdc.single_vdc.id
 
-    network_id = resource.rustack_network.new_network.id
-    firewall_templates = [data.rustack_firewall_template.allow_default.id]
+    network_id = resource.basis_network.new_network.id
+    firewall_templates = [data.basis_firewall_template.allow_default.id]
 }
 
-data "rustack_vm" "vm" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_vm" "vm" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Server 1"
 }
 
-resource "rustack_lbaas_pool" "pool" {
-    lbaas_id = data.rustack_lbaas.lbaas.id
+resource "basis_lbaas_pool" "pool" {
+    lbaas_id = data.basis_lbaas.lbaas.id
     connlimit = 65536
     method = "ROUND_ROBIN"
     port = 2
@@ -58,10 +58,10 @@ resource "rustack_lbaas_pool" "pool" {
     member {
         port = 2
         weight = 1
-        vm_id = data.rustack_vm.vm.id
+        vm_id = data.basis_vm.vm.id
     }
     
-    depends_on = [rustack_vm.vm]
+    depends_on = [basis_vm.vm]
 }
 
 ```

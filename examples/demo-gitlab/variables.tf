@@ -1,10 +1,10 @@
-variable "rustack_endpoint" {
-  description = "Rustack API Endpoint"
+variable "basis_endpoint" {
+  description = "Basis API Endpoint"
   type        = string
 }
 
-variable "rustack_token" {
-  description = "Rustack API Token"
+variable "basis_token" {
+  description = "Basis API Token"
   type        = string
 }
 

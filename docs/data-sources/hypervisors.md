@@ -1,23 +1,23 @@
 ---
-page_title: "rustack_hypervisors Data Source - terraform-provider-rustack"
+page_title: "basis_hypervisors Data Source - terraform-provider-bcc"
 ---
-# rustack_hypervisors (Data Source)
+# basis_hypervisors (Data Source)
 
 Get information about list of Hypervisors in the Project for use in other resources.
 
-Note: You can use the [`rustack_hypervisor`](Hypervisor) data source to obtain metadata
+Note: You can use the [`basis_hypervisor`](Hypervisor) data source to obtain metadata
 about a single Hypervisor if you already know the `name` and `project_id` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_hypervisors" "all_hypervisors" {
-    project_id = data.rustack_project.single_project.id
+data "basis_hypervisors" "all_hypervisors" {
+    project_id = data.basis_project.single_project.id
 }
 
 ```

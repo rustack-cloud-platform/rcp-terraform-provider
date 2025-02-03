@@ -1,32 +1,32 @@
 ---
-page_title: "rustack_lbaas Resource - terraform-provider-rustack"
+page_title: "basis_lbaas Resource - terraform-provider-bcc"
 ---
-# rustack_lbaas (Resource)
+# basis_lbaas (Resource)
 
-Provides a Rustack DNS record resource.
+Provides a Basis DNS record resource.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "new_network" {
-    vdc_id =  data.rustack_vdc.single_vdc.id
+data "basis_network" "new_network" {
+    vdc_id =  data.basis_vdc.single_vdc.id
     name = "New network"
 }
 
-resource "rustack_lbaas" "lbaas" {
-    vdc_id = data.rustack_project.single_vdc.id
+resource "basis_lbaas" "lbaas" {
+    vdc_id = data.basis_project.single_vdc.id
     name = "lbaas"
     port{
-        network_id = data.rustack_network.new_network.id
+        network_id = data.basis_network.new_network.id
     }
     tags = ["created_by:terraform"]
 }

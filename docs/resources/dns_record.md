@@ -1,24 +1,24 @@
 ---
-page_title: "rustack_dns_record Resource - terraform-provider-rustack"
+page_title: "basis_dns_record Resource - terraform-provider-bcc"
 ---
-# rustack_dns_record (Resource)
+# basis_dns_record (Resource)
 
-Provides a Rustack DNS record resource.
+Provides a Basis DNS record resource.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_dns" "dns" {
+data "basis_dns" "dns" {
     name="dns.teraform."
-    project_id = data.rustack_project.single_project.id
+    project_id = data.basis_project.single_project.id
 }
 
-resource "rustack_dns_record" "dns_record1" {
-    dns_id = data.rustack_dns.dns.id
+resource "basis_dns_record" "dns_record1" {
+    dns_id = data.basis_dns.dns.id
     type = "A"
     host = "test2.dns.teraform."
     data = "8.8.8.8"

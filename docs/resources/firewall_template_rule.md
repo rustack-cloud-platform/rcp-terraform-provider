@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_firewall_template Resource - terraform-provider-rustack"
+page_title: "basis_firewall_template Resource - terraform-provider-bcc"
 ---
-# rustack_firewall_template (Resource)
+# basis_firewall_template (Resource)
 
 Firewall allow you to manage your network traffic.
 
@@ -9,22 +9,22 @@ Firewall allow you to manage your network traffic.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_firewall_template" "single_template" {
-  vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_firewall_template" "single_template" {
+  vdc_id = data.basis_vdc.single_vdc.id
   name   = "New custom template"
 }
 
-resource "rustack_firewall_template_rule" "rule_1" {
-    firewall_id = resource.rustack_firewall_template.single_template.id
+resource "basis_firewall_template_rule" "rule_1" {
+    firewall_id = resource.basis_firewall_template.single_template.id
     name = "test1"
     direction = "ingress"
     protocol = "tcp"

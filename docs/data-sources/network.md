@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_network Data Source - terraform-provider-rustack"
+page_title: "basis_network Data Source - terraform-provider-bcc"
 ---
-# rustack_network (Data Source)
+# basis_network (Data Source)
 
 Get information about a Network for use in other resources. 
 
@@ -9,17 +9,17 @@ Get information about a Network for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "single_network" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_network" "single_network" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "Сеть 1"
     # or
     id = "id"

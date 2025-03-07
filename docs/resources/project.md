@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_project Resource - terraform-provider-rustack"
+page_title: "basis_project Resource - terraform-provider-bcc"
 ---
-# rustack_project (Resource)
+# basis_project (Resource)
 
 Projects allow you to organize your resources into groups that fit the way you work.
 
@@ -10,7 +10,7 @@ The Vdcs can be associated with a project:
 ## Example Usage
 
 ```hcl
-resource "rustack_project" "demo_project" {
+resource "basis_project" "demo_project" {
     name = "Terraform Project"
     tags = ["created_by:terraform"]
 }

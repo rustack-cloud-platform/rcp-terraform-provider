@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_vm Data Source - terraform-provider-rustack"
+page_title: "basis_vm Data Source - terraform-provider-bcc"
 ---
-# rustack_vm (Data Source)
+# basis_vm (Data Source)
 
 Get information about a Vm for use in other resources. 
 This is useful if you need to utilize any of the Vm's data and Vm not managed by Terraform.
@@ -13,17 +13,17 @@ error is triggered if more than one Vm is found.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_vm" "single_vm" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_vm" "single_vm" {
+    vdc_id = data.basis_vdc.single_vdc.id
     
     name = "Server 1"
     # or

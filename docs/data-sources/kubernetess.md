@@ -1,30 +1,30 @@
 ---
-page_title: "rustack_kubernetess Data Source - terraform-provider-rustack"
+page_title: "basis_kubernetess Data Source - terraform-provider-bcc"
 ---
-# rustack_kubernetess (Data Source)
+# basis_kubernetess (Data Source)
 
-Returns a list of Rustack kubernetess.
+Returns a list of Basis kubernetess.
 
 Get information about all kubernetes clasters in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_vm`](Kubernetess) data source to obtain metadata
+Note: You can use the [`basis_vm`](Kubernetess) data source to obtain metadata
 about a single Kubernetess if you already know the `name` and `vdc_id` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_kubernetess" "all_k8s" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_kubernetess" "all_k8s" {
+    vdc_id = data.basis_vdc.single_vdc.id
 }
 
 ```
@@ -65,7 +65,7 @@ Read-Only:
 - *This block will print dashboard_url in console*
 ```
     output "dashboard_url" {
-        value = data.rustack_kubernetes.all_k8s[0].dashboard_url
+        value = data.basis_kubernetes.all_k8s[0].dashboard_url
     }
 ```
 

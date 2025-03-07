@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_hypervisor Data Source - terraform-provider-rustack"
+page_title: "basis_hypervisor Data Source - terraform-provider-bcc"
 ---
-# rustack_hypervisor (Data Source)
+# basis_hypervisor (Data Source)
 
 Get information about a Hypervisor for use in other resources. 
 
@@ -9,12 +9,12 @@ Get information about a Hypervisor for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_hypervisor" "single_hypervisor" {
-    project_id = data.rustack_project.single_project.id
+data "basis_hypervisor" "single_hypervisor" {
+    project_id = data.basis_project.single_project.id
     
     name = "VMWARE"
     # or

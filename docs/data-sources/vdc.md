@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_vdc Data Source - terraform-provider-rustack"
+page_title: "basis_vdc Data Source - terraform-provider-bcc"
 ---
-# rustack_vdc (Data Source)
+# basis_vdc (Data Source)
 
 Get information about a Vdc for use in other resources. 
 This is useful if you need to utilize any of the Vdc's data and Vdc not managed by Terraform.
@@ -10,16 +10,16 @@ This is useful if you need to utilize any of the Vdc's data and Vdc not managed 
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_vdc" "single_vdc2" {
+data "basis_vdc" "single_vdc2" {
     name = "Terraform VDC"
     # or
     id = "id"

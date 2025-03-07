@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_paas_template Data Source - terraform-provider-rustack"
+page_title: "basis_paas_template Data Source - terraform-provider-bcc"
 ---
-# rustack_paas_template (Data Source)
+# basis_paas_template (Data Source)
 
 Get information about a PaaS Service Template for use in other resources. 
 
@@ -9,13 +9,13 @@ Get information about a PaaS Service Template for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_paas_template" "paas_template" {
+data "basis_paas_template" "paas_template" {
   id = 1
-  project_id = data.rustack_project.single_project.id
+  project_id = data.basis_project.single_project.id
 }
 ```
 ## Schema

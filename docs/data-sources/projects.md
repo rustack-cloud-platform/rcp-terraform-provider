@@ -1,18 +1,18 @@
 ---
-page_title: "rustack_projects Data Source - terraform-provider-rustack"
+page_title: "basis_projects Data Source - terraform-provider-bcc"
 ---
-# rustack_projects (Data Source)
+# basis_projects (Data Source)
 
 Get information about Projects in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_project`](Project) data source to obtain metadata
+Note: You can use the [`basis_project`](Project) data source to obtain metadata
 about a single Project if you already know the `name` to retrieve.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_projects" "all_projects" { }
+data "basis_projects" "all_projects" { }
 
 ```
 

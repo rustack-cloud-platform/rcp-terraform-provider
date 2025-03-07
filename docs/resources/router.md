@@ -1,44 +1,44 @@
 ---
-page_title: "rustack_router Resource - terraform-provider-rustack"
+page_title: "basis_router Resource - terraform-provider-bcc"
 ---
-# rustack_router (Resource)
+# basis_router (Resource)
 
-Provides a Rustack network to provide connections of two or more computers that are linked in order to share resources.
+Provides a Basis network to provide connections of two or more computers that are linked in order to share resources.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_network" "default_network" {
-  vdc_id =  data.rustack_vdc.single_vdc.id
+data "basis_network" "default_network" {
+  vdc_id =  data.basis_vdc.single_vdc.id
   name = "Network"
 }
 
-data "rustack_network" "new_network" {
-  vdc_id =  data.rustack_vdc.single_vdc.id
+data "basis_network" "new_network" {
+  vdc_id =  data.basis_vdc.single_vdc.id
   name = "New network"
 }
 
-data "rustack_port" "vm_port" {
-    vdc_id = resource.rustack_vdc.single_vdc.id
+data "basis_port" "vm_port" {
+    vdc_id = resource.basis_vdc.single_vdc.id
 
-    network_id = resource.rustack_network.default_network.id
+    network_id = resource.basis_network.default_network.id
 }
 
 
-resource "rustack_router" "new_router" {
-  vdc_id =  data.rustack_vdc.single_vdc.id
+resource "basis_router" "new_router" {
+  vdc_id =  data.basis_vdc.single_vdc.id
   name = "New router"
   ports = [
-    data.rustack_port.vm_port.id,
+    data.basis_port.vm_port.id,
   ]
   floating = false
   tags = ["created_by:terraform"]

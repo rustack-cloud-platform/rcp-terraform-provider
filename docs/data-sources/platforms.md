@@ -1,26 +1,26 @@
 ---
-page_title: "rustack_platforms Data Source - terraform-provider-rustack"
+page_title: "basis_platforms Data Source - terraform-provider-bcc"
 ---
-# rustack_platforms (Data Source)
+# basis_platforms (Data Source)
 ### `Only for Vmware Hypervisor`
 
 Get information about Platforms in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_platforms`](Platforms) data source to obtain metadata
+Note: You can use the [`basis_platforms`](Platforms) data source to obtain metadata
 about a single Platforms if you already know the `name` to retrieve.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
-data "rustack_platforms" "platforms"{
-    vdc_id = resource.rustack_vdc.single_vdc.id
+data "basis_platforms" "platforms"{
+    vdc_id = resource.basis_vdc.single_vdc.id
 }
 ```
 

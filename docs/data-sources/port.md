@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_port Data Source - terraform-provider-rustack"
+page_title: "basis_port Data Source - terraform-provider-bcc"
 ---
-# rustack_port (Data Source)
+# basis_port (Data Source)
 
 Get information about a Port for use in other resources. 
 
@@ -9,17 +9,17 @@ Get information about a Port for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_port" "port" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_port" "port" {
+    vdc_id = data.basis_vdc.single_vdc.id
     ip_address = "0.0.0.0"
     id = "00000000-0000-0000-0000-000000000000"
 }

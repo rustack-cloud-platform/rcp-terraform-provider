@@ -1,11 +1,11 @@
 ---
-page_title: "rustack_kubernetes_templates Data Source - terraform-provider-rustack"
+page_title: "basis_kubernetes_templates Data Source - terraform-provider-bcc"
 ---
-# rustack_kubernetes_templates (Data Source)
+# basis_kubernetes_templates (Data Source)
 
 Get information about kubernetes templates in the Vdc for use in other resources.
 
-Note: You can use the [`rustack_kubernetes_templates`](kubernetes_templates) data source to obtain metadata
+Note: You can use the [`basis_kubernetes_templates`](kubernetes_templates) data source to obtain metadata
 about a single Template if you already know the `name` and `vdc_id` to retrieve.
 
 
@@ -13,17 +13,17 @@ about a single Template if you already know the `name` and `vdc_id` to retrieve.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_kubernetes_templates" "k8s_template" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_kubernetes_templates" "k8s_template" {
+    vdc_id = data.basis_vdc.single_vdc.id
 }
 
 ```

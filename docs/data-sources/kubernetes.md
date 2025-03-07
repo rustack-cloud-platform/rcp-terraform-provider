@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_kubernetes Data Source - terraform-provider-rustack"
+page_title: "basis_kubernetes Data Source - terraform-provider-bcc"
 ---
-# rustack_kubernetes (Data Source)
+# basis_kubernetes (Data Source)
 
 Get information about a Kubernetes for use in other resources. 
 This is useful if you need to utilize any of the Kubernetes's data and Kubernetes not managed by Terraform.
@@ -13,17 +13,17 @@ error is triggered if more than one Kubernetes is found.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_kubernetes" "single_k8s" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_kubernetes" "single_k8s" {
+    vdc_id = data.basis_vdc.single_vdc.id
     
     name = "Server 1"
     # or
@@ -59,7 +59,7 @@ data "rustack_kubernetes" "single_k8s" {
 - **This block will print dashboard_url in console**
 ```
     output "dashboard_url" {
-        value = data.rustack_kubernetes.single_k8s.dashboard_url
+        value = data.basis_kubernetes.single_k8s.dashboard_url
     }
 ```
 ### Get kubectl config

@@ -2,25 +2,25 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    rustack = {
-      source  = "rustack-cloud-platform/rcp"
+    basis = {
+      source  = "basis-cloud/bcc"
     }
   }
 }
 
-provider "rustack" {
+provider "basis" {
   token = "[PLACE_YOUR_TOKEN_HERE]"
 }
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
   name = "Terraform Project"
 }
 
-data "rustack_account" "me"{}
+data "basis_account" "me"{}
 
-data "rustack_pub_key" "key"{
+data "basis_pub_key" "key"{
     name = "name"
     # or
     or = "id"
-    account_id = data.rustack_account.me.id
+    account_id = data.basis_account.me.id
 }

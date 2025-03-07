@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 
+	"github.com/basis-cloud/terraform-provider-bcc/bcc_terraform"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
-	"github.com/rustack-cloud-platform/terraform-provider-rcp/rustack_terraform"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 
 	opts := &plugin.ServeOpts{
 		ProviderFunc: func() *schema.Provider {
-			return rustack_terraform.Provider()
+			return bcc_terraform.Provider()
 		},
 	}
 

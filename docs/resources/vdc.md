@@ -1,26 +1,26 @@
 ---
-page_title: "rustack_vdc Resource - terraform-provider-rustack"
+page_title: "basis_vdc Resource - terraform-provider-bcc"
 ---
-# rustack_vdc (Resource)
+# basis_vdc (Resource)
 
-Provides a Rustack VDC resource to determinate hipervisor to use.
+Provides a Basis VDC resource to determinate hipervisor to use.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_hypervisor" "single_hypervisor" {
-    project_id = data.rustack_project.single_project.id
+data "basis_hypervisor" "single_hypervisor" {
+    project_id = data.basis_project.single_project.id
     name = "VMWARE"
 }
 
-resource "rustack_vdc" "vdc1" {
+resource "basis_vdc" "vdc1" {
     name = "Terraform VDC"
-    project_id = data.rustack_project.single_project.id
-    hypervisor_id = data.rustack_hypervisor.single_hypervisor.id
+    project_id = data.basis_project.single_project.id
+    hypervisor_id = data.basis_hypervisor.single_hypervisor.id
 }
 ```
 

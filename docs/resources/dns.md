@@ -1,20 +1,20 @@
 ---
-page_title: "rustack_dns Resource - terraform-provider-rustack"
+page_title: "basis_dns Resource - terraform-provider-bcc"
 ---
-# rustack_dns (Resource)
+# basis_dns (Resource)
 
-Provides a Rustack DNS resource.
+Provides a Basis DNS resource.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-resource "rustack_dns" "dns" {
+resource "basis_dns" "dns" {
     name="dns.teraform."
-    project_id = data.rustack_project.single_project.id
+    project_id = data.basis_project.single_project.id
     tags = ["created_by:terraform"]
 }
 ```

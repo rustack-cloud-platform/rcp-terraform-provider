@@ -1,24 +1,24 @@
 ---
-page_title: "rustack_network Resource - terraform-provider-rustack"
+page_title: "basis_network Resource - terraform-provider-bcc"
 ---
-# rustack_network (Resource)
+# basis_network (Resource)
 
-Provides a Rustack network to provide connections of two or more computers that are linked in order to share resources.
+Provides a Basis network to provide connections of two or more computers that are linked in order to share resources.
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-resource "rustack_network" "network2" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+resource "basis_network" "network2" {
+    vdc_id = data.basis_vdc.single_vdc.id
 
     name = "Network 1"
 

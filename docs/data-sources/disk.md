@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_disk Data Source - terraform-provider-rustack"
+page_title: "basis_disk Data Source - terraform-provider-bcc"
 ---
-# rustack_disk (Data Source)
+# basis_disk (Data Source)
 
 Get information about a Disk for use in other resources. 
 
@@ -9,17 +9,17 @@ Get information about a Disk for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_disk" "single_disk" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_disk" "single_disk" {
+    vdc_id = data.basis_vdc.single_vdc.id
     
     name = "Disk 2"
     # or

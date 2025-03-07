@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_pub_key Data Source - terraform-provider-rustack"
+page_title: "basis_pub_key Data Source - terraform-provider-bcc"
 ---
-# rustack_pub_key (Data Source)
+# basis_pub_key (Data Source)
 
 Get information about a public key for use in other resources. 
 
@@ -9,10 +9,10 @@ Get information about a public key for use in other resources.
 
 ```hcl
 
-data "rustack_account" "me"{}
+data "basis_account" "me"{}
 
-data "rustack_pub_key" "key" {
-    account_id = data.rustack_account.me.id
+data "basis_pub_key" "key" {
+    account_id = data.basis_account.me.id
     
     name = "Debian 10"
     # or

@@ -1,9 +1,9 @@
 ---
-page_title: "Rustack Provider"
+page_title: "BCC provider"
 ---
-# rustack Provider
+# BCC provider
 
-The Rustack provider is used to interact with the Rustack cloud. 
+The BCC provider is used to interact with the Basis cloud. 
 The provider needs to be configured with the proper credentials before it can be used.
 
 Use the navigation to the left to read about the available resources.
@@ -13,20 +13,20 @@ Use the navigation to the left to read about the available resources.
 ```hcl
 terraform {
   required_providers {
-    rustack = {
-      source  = "rustack-cloud-platform/rcp"
+    basis = {
+      source  = "basis-cloud/bcc"
     }
   }
 }
 
 # Set the variable value in *.tfvars file
-# or using -var="rustack_token=..." CLI option
-variable "rustack_token" {}
+# or using -var="basis_token=..." CLI option
+variable "basis_token" {}
 
-# Configure the Rustack Provider
-provider "rustack" {
+# Configure the BCC provider
+provider "basis" {
     api_endpoint = "https://cp.iteco.cloud"
-    token = var.rustack_token
+    token = var.basis_token
 }
 
 ```
@@ -38,5 +38,5 @@ declare its own [provider requirements](https://www.terraform.io/docs/language/p
 
 ### Optional
 
-- **api_endpoint** (String) The URL to use for the Rustack API.
+- **api_endpoint** (String) The URL to use for the BCC API.
 - **token** (String) The token key for API operations.

@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_project Data Source - terraform-provider-rustack"
+page_title: "basis_project Data Source - terraform-provider-bcc"
 ---
-# rustack_project (Data Source)
+# basis_project (Data Source)
 
 Get information about a Project for use in other resources. 
 
@@ -9,7 +9,7 @@ Get information about a Project for use in other resources.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
     # or
     id = "id"

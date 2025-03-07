@@ -1,33 +1,33 @@
 ---
-page_title: "rustack_disk Resource - terraform-provider-rustack"
+page_title: "basis_disk Resource - terraform-provider-bcc"
 ---
-# rustack_disk (Resource)
+# basis_disk (Resource)
 
-Provides a Rustack disk volume which can be attached to a VM in order to provide expanded storage.
+Provides a Basis disk volume which can be attached to a VM in order to provide expanded storage.
 
 ## Example Usage
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_storage_profile" "single_storage_profile" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_storage_profile" "single_storage_profile" {
+    vdc_id = data.basis_vdc.single_vdc.id
     name = "sas"
 }
 
-resource "rustack_disk" "disk2" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+resource "basis_disk" "disk2" {
+    vdc_id = data.basis_vdc.single_vdc.id
 
     name = "Disk 1"
-    storage_profile_id = data.rustack_storage_profile.single_storage_profile.id
+    storage_profile_id = data.basis_storage_profile.single_storage_profile.id
     size = 1
     tags = ["created_by:terraform"]
 }

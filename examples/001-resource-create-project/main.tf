@@ -2,16 +2,16 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    rustack = {
-      source  = "rustack-cloud-platform/rcp"
+    basis = {
+      source  = "basis-cloud/bcc"
     }
   }
 }
 
-provider "rustack" {
+provider "basis" {
     token = "[PLACE_YOUR_TOKEN_HERE]"
 }
 
-resource "rustack_project" "demo_project" {
+resource "basis_project" "demo_project" {
     name = "Terraform Project"
 }

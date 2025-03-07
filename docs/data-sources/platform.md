@@ -1,22 +1,22 @@
 ---
-page_title: "rustack_platform Data Source - terraform-provider-rustack"
+page_title: "basis_platform Data Source - terraform-provider-bcc"
 ---
-# rustack_platform (Data Source)
+# basis_platform (Data Source)
 ### `Only for Vmware Hypervisor`
 Get information about a Platform for use in other resources. 
 
 ## Example Usage
 
 ```hcl
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
-data "rustack_platform" "platform"{
-    vdc_id = resource.rustack_vdc.single_vdc.id
+data "basis_platform" "platform"{
+    vdc_id = resource.basis_vdc.single_vdc.id
     name = "Intel Cascade Lake"
     # or
     id = ""

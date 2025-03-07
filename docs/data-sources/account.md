@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_account Data Source - terraform-provider-rustack"
+page_title: "basis_account Data Source - terraform-provider-bcc"
 ---
-# rustack_account (Data Source)
+# basis_account (Data Source)
 
 Get information about a Acconut for use in other resources. 
 
@@ -9,7 +9,7 @@ Get information about a Acconut for use in other resources.
 
 ```hcl
 
-data "rustack_account" "account" { }
+data "basis_account" "account" { }
 
 ```
 ## Schema

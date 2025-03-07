@@ -1,7 +1,7 @@
 ---
-page_title: "rustack_dns Data Source - terraform-provider-rustack"
+page_title: "basis_dns Data Source - terraform-provider-bcc"
 ---
-# rustack_dns (Data Source)
+# basis_dns (Data Source)
 
 Get information about a Dns for use in other resources. 
 This is useful if you need to utilize any of the Dns's data and dns not managed by Terraform.
@@ -10,16 +10,16 @@ This is useful if you need to utilize any of the Dns's data and dns not managed 
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_dns" "dns" {
+data "basis_dns" "dns" {
     name="dns.teraform."
     # or
     id = "id"
     
-    project_id = data.rustack_project.single_project.id
+    project_id = data.basis_project.single_project.id
 }
 
 ```

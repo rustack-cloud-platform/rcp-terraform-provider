@@ -1,9 +1,9 @@
 ---
-page_title: "rustack_lbaas Data Source - terraform-provider-rustack"
+page_title: "basis_lbaas Data Source - terraform-provider-bcc"
 ---
-# rustack_lbaas (Data Source)
+# basis_lbaas (Data Source)
 
-Get information about Rustack lbaas.
+Get information about Basis lbaas.
 
 Get information about lbaas in the Vdc for use in other resources.
 
@@ -14,17 +14,17 @@ error is triggered if more than one lbaas is found.
 
 ```hcl
 
-data "rustack_project" "single_project" {
+data "basis_project" "single_project" {
     name = "Terraform Project"
 }
 
-data "rustack_vdc" "single_vdc" {
-    project_id = data.rustack_project.single_project.id
+data "basis_vdc" "single_vdc" {
+    project_id = data.basis_project.single_project.id
     name = "Terraform VDC"
 }
 
-data "rustack_lbaas" "test" {
-    vdc_id = data.rustack_vdc.single_vdc.id
+data "basis_lbaas" "test" {
+    vdc_id = data.basis_vdc.single_vdc.id
     
     name = "test"
     # or
